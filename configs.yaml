@@ -1,0 +1,28 @@
+paths:
+    data: ../Datasets/BUSI # path to folder with train data
+    log_dir: logs/ # path to folder where the results of experiments from the tensorboard will be recorded
+
+data_parameters:
+    n_classes: 3 # number of different classes
+    image_size: 512, 512 # model image input size (height, width)
+    batch_size: 4 # batch size
+
+model_parameters:
+    AdaptiveLayer:
+        adjustment: None # None, spectrum, spectrum_log, phase or general_spectrum adaptive adjustment layer
+    segmentation:
+        UNet:
+            init_features: 32 # number of channels (features) in initial conv
+            depth: 3 # number of downsteps
+    classification:
+        ResNet:
+            blocks: 3, 3, 3 # numbers of blocks stacked at the building blocks
+            filters: 16, 32, 64 # numbers of filters
+    denoising:
+        DnCNN:
+            num_features: 32 # number of channels (features) in initial conv
+            num_layers: 20 # number of layers
+
+train_parameters:
+    lr: 0.001 # learning rate
+    epochs: 25 # number of epochs
